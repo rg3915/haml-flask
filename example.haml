@@ -1,0 +1,71 @@
+%head
+  %title Haml
+  %link{"rel" => "stylesheet", "href" => "{{ url_for(\"static\", filename=\"css/bulma.min.css\") }}", "type" => "text/css"}
+
+%body
+  .container
+    #header
+      %h1.title Haml
+      %h2.subtitle HamlPy3
+      %a{'href': 'http://haml.info/'} haml.info
+      .columns
+        .column
+          #profile.card
+            .card-content
+              .media-content
+                %p#name Regis
+                %p#user @rg3915
+            .content
+              Lorem ipsum dolor sit amet.
+        .column
+          #profile.card
+            .card-content
+              .media-content
+                %p#github rg3915
+    #content
+      %ul#names
+        - for name in names
+          %li= name.name
+    #extra
+      %ul#names
+        - for name in names
+          %li{'id': 'item_{{name.id}}', 'class': 'list-item'}= name.name
+    #myTable
+      %table.table.is-bordered
+        %thead
+          %tr
+            %th Nome
+            %th Email
+        %tbody
+          - for name in names
+            %tr
+              %td= name.name
+              %td= name.email
+
+    :python
+      print("<ul>")
+      fruits = ['banana', 'maçã', 'laranja', 'pêssego', 'uva']
+      for fruit in fruits:
+          print("<li>%s</li>" % fruit)
+      print("</ul>")
+
+    :python
+      print("<ul>")
+      for i in range(5):
+          print("<li id='item%s'>Item %s</li>" % (i, i))
+      print("</ul>")
+
+    :python
+      def fibonacci(n):
+          a, b = 0, 1
+          for i in range(n):
+              a, b = b, a+b
+          return a
+      print("<p>Fibonacci</p>")
+      for x in range(10):
+          print('%s, ' % fibonacci(x))
+
+    %footer.footer
+      .content.has-text-centered
+        %p
+          Haml on FlaskConf by @rg3915

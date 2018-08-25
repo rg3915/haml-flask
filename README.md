@@ -39,8 +39,65 @@ pip install hamlpy3
 Convertendo .haml em .html
 
 ```
-hamlpy inputfile.haml index.html
+hamlpy example.haml templates/index.html
 ```
+
+### Criando um projetinho
+
+```
+pip install flask
+vim run.py
+mkdir templates
+```
+
+Conteúdo de `run.py`:
+
+```python
+from flask import Flask
+from flask import render_template
+app = Flask(__name__)
+
+
+@app.route('/')
+def run():
+    names = [
+        {
+            'id': 1,
+            'name': 'Regis',
+            'email': 'regis@email.com'
+        },
+        {
+            'id': 2,
+            'name': 'Abel',
+            'email': 'abel@hotmail.com'
+        },
+        {
+            'id': 3,
+            'name': 'Fernanda',
+            'email': 'fernanda@gmail.com'
+        },
+    ]
+    return render_template("index.html", names=names)
+```
+
+#### Rodando
+
+```
+export FLASK_APP=run.py
+flask run
+```
+
+### Voltemos ao Haml
+
+Veja `example.haml`
+
+
+Convertendo .haml em .html
+
+```
+hamlpy example.haml templates/index.html
+```
+
 
 #### Referências
 
